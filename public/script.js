@@ -81,13 +81,26 @@ const main = async () => {
     const formattedProducts = formatBody(rawProducts);
     formattedProducts.sort(sortFunction);
 
-    const productContainer = document.querySelector("#product-container");
+    const allProductContainer = document.querySelector(
+        "#all-product-container"
+    );
     for (product of formattedProducts) {
-        createElement(
-            "p",
-            productContainer,
+        const productToggle = createElement("input", allProductContainer);
+        productToggle.type = "checkbox";
+        productToggle.id = `toggle-visible-${product.id}`;
+        productToggle.checked = true;
+        const productLabel = createElement(
+            "label",
+            allProductContainer,
             "product-title",
             `${product.name} <span class="product-id">#${product.id}</span>`
+        );
+        productLabel.setAttribute("for", `toggle-visible-${product.id}`);
+
+        const productContainer = createElement(
+            "div",
+            allProductContainer,
+            "product-container"
         );
         createElement(
             "p",
@@ -142,6 +155,8 @@ const main = async () => {
             "",
             `Ingredienser: ${product.declaration}`
         );
+
+        createElement("br", allProductContainer);
     }
 };
 main();
