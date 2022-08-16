@@ -156,6 +156,13 @@ const main = async () => {
             `Ingredienser: ${product.declaration}`
         );
 
+        const productLink = createElement(
+            "p",
+            productContainer,
+            "",
+            `<a target="_blank" href="https://shop.rema1000.dk/varer/${product.id}">Se produkt på rema1000.dk</a>`
+        );
+
         createElement("br", allProductContainer);
     }
 };
