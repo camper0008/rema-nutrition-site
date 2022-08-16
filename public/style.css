@@ -1,0 +1,15 @@
+body {
+    background-color: #242424;
+    color: white;
+    font-family: "sans-serif";
+}
+
+.product-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.product-id {
+    font-weight: normal;
+    font-size: 0.9em;
+}
