@@ -1,5 +1,5 @@
 const formatBody = (body) => {
-    const blackListedIds = [240163];
+    const blackListedIds = [240163, 92915, 92946];
 
     const res = [];
     for (supercategory of body) {
@@ -72,14 +72,25 @@ const createElement = (tag, parent, className, text) => {
     return element;
 };
 
-const sortFunction = (productA, productB) =>
+const kcalSortFunction = (productA, productB) =>
     productA.kcalPerPrice < productB.kcalPerPrice;
+
+const proteinSortFunction = (productA, productB) =>
+    productA.proteinPerPrice < productB.proteinPerPrice;
+
+const sortMap = {
+    protein: proteinSortFunction,
+    kcal: kcalSortFunction,
+};
 
 const main = async () => {
     const res = await fetch("file.json");
     const rawProducts = await res.json();
     const formattedProducts = formatBody(rawProducts);
-    formattedProducts.sort(sortFunction);
+
+    const sortSelect = document.querySelector("#sort-function");
+
+    formattedProducts.sort(sortMap[sortSelect.value]);
 
     const allProductContainer = document.querySelector(
         "#all-product-container"

@@ -19,6 +19,10 @@ a {
     text-decoration: none;
 }
 
+br {
+    margin-bottom: 2rem;
+}
+
 a:hover {
     opacity: 0.85;
 }
